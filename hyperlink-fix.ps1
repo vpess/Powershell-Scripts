@@ -3,11 +3,11 @@
 $Host.UI.RawUI.WindowTitle = "Hyperlink Fix"
 $ErrorActionPreference = "SilentlyContinue"
 
-Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.htm"
-Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.html"
-Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.shtml"
-Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.xht"
-Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.xhtml"
+Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.htm" -force
+Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.html" -force
+Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.shtml" -force
+Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.xht" -force
+Set-ItemProperty -path "HKCU:\SOFTWARE\Classes\.xhtml" -force
 
 Write-Host "GG"
 Start-Sleep -s 1
