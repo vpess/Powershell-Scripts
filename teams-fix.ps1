@@ -71,17 +71,6 @@ function reinstall {
     return selec
 }
 
-function vdi { #https://autoatendimentotic.petrobras.com.br/visualizar/5100055/16513
-    Write-Host "`nO Outlook precisa ser finalizado para que a correção seja feita. Caso ele esteja aberto, salve seu trabalho e prossiga." -ForegroundColor Red -BackgroundColor Black
-    Write-Host -NoNewLine "`nPressione qualquer tecla para continuar...`n";
-    $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
-    Stop-Process -ProcessName teams -Force -ErrorAction SilentlyContinue
-    Stop-Process -ProcessName outlook -Force -ErrorAction SilentlyContinue
-    Rename-Item "$Env:userprofile\appdata\local\Microsoft\Teams" "$Env:userprofile\appdata\local\Microsoft\Teams_old"
-    Remove-Item -Recurse -Force "$ENV:Userprofile\appdata\roaming\Microsoft\Teams\*" -ErrorAction SilentlyContinue
-    Set-Location "C:\Program Files (x86)\Teams Installer\" ; .\Teams.exe --checkinstall
-}
-
 function selec{
 
     param (
@@ -93,7 +82,6 @@ function selec{
     Write-Host "	[1] para remover arquivos de cache do Teams"
     Write-Host "	[2] para remover arquivos da Roaming (%appdata%)"
     Write-Host "	[3] para remover todos os resquícios do Microsoft Teams e reinstalá-lo"
-    Write-Host "	[4] para executar o reparo do Teams para VDI's"
     Write-Host "	[q] para fechar o script"
     
     Write-Host "`n============================================================================"
@@ -107,15 +95,13 @@ function selec{
 
        '3' {reinstall}
 
-       '4' {vdi}
-
        'q' {
            Write-Output "`nSaindo..."
            Start-Sleep -s 1
            return}
   
        default {
-            if ($selection -ige 4 -or $selection -ne 'q'){
+            if ($selection -ige 3 -or $selection -ne 'q'){
                  Write-Host "`n>>> Selecione apenas opções que estejam no menu!`n" -ForegroundColor Red -BackgroundColor Black
                  Start-Sleep -s 2
                  return selec }
