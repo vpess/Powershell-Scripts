@@ -36,11 +36,11 @@ Start-Sleep -Seconds 3
 & 'C:\Users\bjbd\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\EclipsePhone.lnk'
 Start-Sleep -Seconds 3
 
-Start-Process powershell.exe -Verb runAs
-Start-Sleep -Seconds 3
-
 & 'C:\Users\bjbd\Desktop\AD_Explorer.exe'
 Start-Sleep -Seconds 3
 
-start-process iexplore.exe https://portaldoatendimento.petrobras.biz
+& 'C:\Program Files\Internet Explorer\iexplore.exe' https://portaldoatendimento.petrobras.biz
+Start-Sleep -Seconds 3
+
+Start-Process powershell.exe -Verb runAs
 Start-Sleep -Seconds 3
