@@ -36,10 +36,10 @@ Start-Sleep -Seconds 3
 & 'C:\Users\bjbd\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\EclipsePhone.lnk'
 Start-Sleep -Seconds 3
 
-& 'C:\Users\bjbd\Desktop\AD_Explorer.exe'
+& 'C:\Program Files\Internet Explorer\iexplore.exe' https://portaldoatendimento.petrobras.biz
 Start-Sleep -Seconds 3
 
-& 'C:\Program Files\Internet Explorer\iexplore.exe' https://portaldoatendimento.petrobras.biz
+& 'C:\Users\bjbd\Desktop\AD_Explorer.exe'
 Start-Sleep -Seconds 3
 
 Start-Process powershell.exe -Verb runAs
