@@ -36,7 +36,7 @@ Start-Sleep -Seconds 3
 & 'C:\Users\bjbd\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\EclipsePhone.lnk'
 Start-Sleep -Seconds 3
 
-& 'C:\Program Files\Internet Explorer\iexplore.exe' https://portaldoatendimento.petrobras.biz
+& 'C:\Program Files\Internet Explorer\iexplore.exe' http://portaldoatendimento.petrobras.biz
 Start-Sleep -Seconds 3
 
 & 'C:\Users\bjbd\Desktop\AD_Explorer.exe'
