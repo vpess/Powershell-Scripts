@@ -1,5 +1,8 @@
 Write-host "Lá vamos nós.... mais um dia"
 
+Start-Process powershell.exe -Verb runAs
+Start-Sleep -Seconds 3
+
 Start-Process notepad
 Start-Sleep -Seconds 3
 
@@ -10,6 +13,9 @@ Start-process SnippingTool
 Start-Sleep -Seconds 3
 
 Start-Process outlook
+Start-Sleep -Seconds 3
+
+Start-Process msedge
 Start-Sleep -Seconds 3
 
 Start-Process firefox
@@ -40,7 +46,4 @@ Start-Sleep -Seconds 3
 Start-Sleep -Seconds 3
 
 & 'C:\Users\bjbd\Desktop\AD_Explorer.exe'
-Start-Sleep -Seconds 3
-
-Start-Process powershell.exe -Verb runAs
 Start-Sleep -Seconds 3
