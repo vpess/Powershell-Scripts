@@ -1,5 +1,5 @@
-﻿$Host.UI.RawUI.WindowTitle = "Microsoft Teams Fix"
-$ErrorActionPreference = "SilentlyContinue"
+$Host.UI.RawUI.WindowTitle = "Microsoft Teams Fix"
+#$ErrorActionPreference = "SilentlyContinue"
 
 <#function log {
     $directory = "C:\Windows\Logs\Teams-fix.log" 
@@ -14,29 +14,27 @@ $ErrorActionPreference = "SilentlyContinue"
 function cleanCache {
     Write-Host "`nFinalizando processos do Teams..."
     Stop-Process -ProcessName teams -Force -ErrorAction SilentlyContinue
-    Write-Host "`nEfetuando remoção de arquivos de cache..."
+    Write-Host "`nEfetuando remoção de arquivos de cache..." ; Start-Sleep -s 2
     Remove-Item -Recurse -Force "$ENV:Userprofile\appdata\roaming\Microsoft\Teams\Cache\*" -ErrorAction SilentlyContinue
     Remove-Item -Recurse -Force "$ENV:Userprofile\appdata\roaming\Microsoft\Teams\Application Cache\Cache\*" -ErrorAction SilentlyContinue #>>> pode ser inexistente#>
-    Write-Host "`nArquivos de cache do Teams removidos."
-    return selec
+    Write-Host "`nArquivos de cache do Teams removidos."  ; Start-Sleep -s 1
 }
 
 function cleanRoaming {
     Write-Host "`nO Outlook precisa ser finalizado para que essaa correção seja feita. Caso ele esteja aberto, salve seu trabalho e prossiga." -ForegroundColor Red -BackgroundColor Black
     Write-Host -NoNewLine "`nPressione qualquer tecla para continuar...`n";
     $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
-    Write-Host "`nFinalizando processos do Teams e Outlook..."
+    Write-Host "`nFinalizando processos do Teams e Outlook..."  ; Start-Sleep -s 2
     Stop-Process -ProcessName teams -Force -ErrorAction SilentlyContinue
     Stop-Process -ProcessName outlook -Force -ErrorAction SilentlyContinue
-    Write-Host "`nEfetuando remoção de arquivos da %appdata%"
+    Write-Host "`nEfetuando remoção de arquivos da %appdata%"  ; Start-Sleep -s 2
     cleanCache
     Remove-Item -Recurse -Force "$ENV:Userprofile\appdata\roaming\Microsoft\Teams\*" -ErrorAction SilentlyContinue
-    Write-Host "`nArquivos do Teams em %appdata% removidos."   
-    return selec 
+    Write-Host "`nArquivos do Teams em %appdata% removidos." ; Start-Sleep -s 1   
 }
 
 function reinstall {
-    Write-Host "`nO Outlook precisa ser finalizado para que essa correção seja feita. Caso ele esteja aberto, salve seu trabalho e prossiga." -ForegroundColor Red -BackgroundColor Black
+    Write-Host "`nO Outlook precisa ser finalizado para que essaa correção seja feita. Caso ele esteja aberto, salve seu trabalho e prossiga." -ForegroundColor Red -BackgroundColor Black
     Write-Host -NoNewLine "`nPressione qualquer tecla para continuar...`n";
     $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
     Write-Host "`nFinalizando processos do Teams e Outlook..."
@@ -63,12 +61,11 @@ function reinstall {
     #>>> Download e instalação do Teams
     $url = "https://go.microsoft.com/fwlink/p/?LinkID=869426&clcid=0x416&culture=pt-br&country=BR&lm=deeplink&lmsrc=groupChatMarketingPageWeb&cmpid=directDownloadWin64"
     $output = "$Env:userprofile\Downloads\Teams_x64.exe"
-    Write-Host "`nRealizando download do Teams. Aguarde..."
+    Write-Host "`nRealizando download do Teams. O processo pode demorar um pouco mais do que o normal. Aguarde..."
     Invoke-WebRequest -Uri $url -OutFile $output
     Write-Host "`nIniciando a instalação. Aguarde..."
     Invoke-Expression "$ENV:Userprofile\Downloads\Teams_x64.exe"
     Start-Sleep -s 5
-    return selec
 }
 
 function selec{
@@ -89,16 +86,19 @@ function selec{
      $selection = Read-Host "`nSelecione uma das opções acima"
      switch ($selection)
      {
-       '1' {cleanCache} 
+       '1' {cleanCache
+       return selec} 
        
-       '2' {cleanRoaming} 
+       '2' {cleanRoaming
+       return selec} 
 
-       '3' {reinstall}
+       '3' {reinstall
+        return selec}
 
        'q' {
            Write-Output "`nSaindo..."
            Start-Sleep -s 1
-           return}
+           exit }
   
        default {
             if ($selection -ige 3 -or $selection -ne 'q'){
