@@ -1,3 +1,5 @@
+#>>> Ainda não foi testado <<<
+
 Set-ItemProperty -path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FileExts"
 Rename-Item -Path ".\FileExts\" -NewName "FileExts.old"
 
