@@ -27,5 +27,3 @@ Set-ItemProperty -path "HKLM:\SOFTWARE\Classes\.jfif" -Name "(default)" -Value "
 
 Write-Host "GG"
 Start-Sleep -s 3
-
-#Autoria de: BJBD

@@ -110,5 +110,3 @@ function selec{
   }
 
   selec
-
-#Feito por: BJBD
